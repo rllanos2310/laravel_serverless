@@ -11,13 +11,10 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Deploy to server
-      uses: appleboy/ssh-action@master
-      with:
-          script: "cd /var/www/html && ./.scripts/"
-    - name: serverless deploy
       uses: serverless/github-action@master
       with:
-        args: deploy --stage dev
+          script: "cd /var/www/html && ./.scripts/"
+          args: deploy --stage dev
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
